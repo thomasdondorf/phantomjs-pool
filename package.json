@@ -13,6 +13,7 @@
   "author": "Thomas Dondorf",
   "license": "MIT",
   "dependencies": {
+    "file-line-reader": "^1.0.0",
     "phantomjs": "^1.9.18"
   }
 }
