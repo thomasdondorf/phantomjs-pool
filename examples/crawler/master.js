@@ -26,7 +26,7 @@ function jobCallback(job, index) {
         job({
             url : url,
             id : index
-        }, function(err, data) {
+        }, function(err) {
             // Lets log if it worked
             if (err) {
                 console.log('There were some problems for url ' + url + ': ' + err.message);
@@ -40,7 +40,7 @@ function jobCallback(job, index) {
     }
 }
 
-var Pool = new Pool({
+var pool = new Pool({
     size : 3,
     jobCallback : jobCallback,
     workerFile : __dirname + '/worker.js' // location of our worker file (as an absolute path)
