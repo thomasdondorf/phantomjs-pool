@@ -15,7 +15,7 @@ var pages = [
 // Called when a worker is ready for a new job
 // job is the function that needs to be called to execute the job
 // index contains a number (starting at 0) that is increased with each jobCallback call
-function jobCallback(job, index) {
+function jobCallback(job, worker, index) {
 
     // as long as we have urls that we want to crawl we execute the job
     var url = pages[index];
@@ -45,3 +45,4 @@ var pool = new Pool({
     jobCallback : jobCallback,
     workerFile : __dirname + '/worker.js' // location of our worker file (as an absolute path)
 });
+pool.start();

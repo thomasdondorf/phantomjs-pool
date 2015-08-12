@@ -1,7 +1,7 @@
 
 var Pool = require('../../lib/phantomjs-pool').Pool;
 
-function jobCallback(job, index) {
+function jobCallback(job, worker, index) {
     job({
         index : index,
         moreData : "Hello World!"
@@ -20,3 +20,4 @@ var pool = new Pool({
     jobCallback : jobCallback,
     workerFile : __dirname + '/worker.js'
 });
+pool.start();
