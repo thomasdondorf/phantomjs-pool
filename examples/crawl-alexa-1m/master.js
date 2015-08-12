@@ -5,6 +5,8 @@ var LineReader = require('file-line-reader');
 
 var reader = new LineReader(__dirname + '/data/top-1m.csv');
 
+var total = 0;
+var successful = 0;
 
 // Called when a worker is ready for a new job
 // job is the function that needs to be called to execute the job
@@ -15,30 +17,39 @@ function jobCallback(job, worker, index) {
         if (err) {
             throw err;
         }
+        if (line !== null) {
+            console.log('  #' + worker.id + ' job: ' + line);
 
-        console.log('#' + worker.id + ' job: ' + line);
-
-        // Alexa contains like in the format "1,google.com"
-        var split = line.split(',');
-        var id = parseInt(split[0]);
-        var url = split[1];
-        job({
-            id : id,
-            url : url
-        }, function(err) {
-            // Lets log if it worked
-            if (err) {
-                console.log('Problem: ' + err.message + ' for line: ' + line);
-            } else {
-                console.log('DONE: ' + line);
-            }
-        });
+            // Alexa contains like in the format "1,google.com"
+            var split = line.split(',');
+            var id = parseInt(split[0]);
+            var url = split[1];
+            job({
+                id : id,
+                url : url
+            }, function(err) {
+                // Lets log if it worked
+                total++;
+                if (err) {
+                    console.log('Problem  #' + worker.id + ': ' + err.message + ' for line: ' + line);
+                } else {
+                    console.log('    #' + worker.id + '  DONE: ' + line);
+                    successful++;
+                }
+                if (total % 10 === 0) {
+                    console.log('########################### ' + successful + '/' + total + ' ################################');
+                }
+            });
+        } else {
+            job(null);
+        }
 
     });
 }
 
 var pool = new Pool({
-    size : 1,
+    size : 4,
+    verbose : true,
     jobCallback : jobCallback,
     workerFile : __dirname + '/worker.js' // location of our worker file (as an absolute path)
 });
