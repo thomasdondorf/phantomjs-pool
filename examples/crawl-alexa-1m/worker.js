@@ -32,7 +32,7 @@ module.exports = function(data, done, worker) {
         if (!isLoaded) {
             isLoaded = true;
             if (status !== 'success') {
-                done(new Error('Crawl Error: ' + page.reason));
+                done(new Error('Crawl Error: ' + page.reason + ' for ' + page.reason_url));
             } else {
                 logPage();
             }
