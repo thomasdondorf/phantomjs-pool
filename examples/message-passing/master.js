@@ -16,7 +16,7 @@ function jobCallback(job, worker, index) {
 
 
 var pool = new Pool({
-    size : 3,
+    numWorkers : 3,
     jobCallback : jobCallback,
     workerFile : __dirname + '/worker.js'
 });
