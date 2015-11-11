@@ -9,7 +9,7 @@ module.exports = function(data, done, worker) {
     var page = webpage.create();
     page.clearCookies();
     page.clearMemoryCache();
-    page.settings.resourceTimeout = 20000;
+    page.settings.resourceTimeout = 30000;
 
     var resources = [];
     var startTime = -1;
@@ -41,15 +41,15 @@ module.exports = function(data, done, worker) {
 
     function logPage() {
         var endTime = new Date();
-        var title = 'test';/*page.evaluate(function () {
+        var title = page.evaluate(function () {
             return document.title;
-        });*/
+        });
 
         var har = createHar(address, title, startTime, endTime, resources);
 
         // we dont want to have 1m files in one directory, we would prefer to have 1m files divided into 1000 directories
         var dirId = parseInt(data.id / 1000)*1000;
-        var fileName = __workerDirname + '/data/results/' + dirId + '/' + data.id + '-' + data.url.replace(/[^\w.,;+\-]/g, '_') + '.json';
+        var fileName = __workerDirname + '/results/' + dirId + '/' + data.id + '-' + data.url.replace(/[^\w.,;+\-]/g, '_') + '.json';
         fs.write(fileName, JSON.stringify(har, null, 4), 'w');
 
         done();
