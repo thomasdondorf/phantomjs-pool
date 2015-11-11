@@ -16,8 +16,5 @@
   ],
   "author": "Thomas Dondorf",
   "license": "MIT",
-  "dependencies": {
-    "file-line-reader": "^1.0.0"
-  },
   "homepage": "https://github.com/thomasdondorf/phantomjs-pool"
 }

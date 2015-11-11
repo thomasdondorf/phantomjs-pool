@@ -2,8 +2,6 @@
 var fs = require('fs');
 var Pool = require('../../lib/phantomjs-pool').Pool;
 
-var LineReader = require('file-line-reader');
-
 var ALEXA_FILE = 'atop-1m.csv';
 var ALEXA_SIZE = 5; //1000000;
 
@@ -28,8 +26,6 @@ function startCrawling() {
     console.log('Reading ' + ALEXA_FILE);
     var lines = fs.readFileSync(ALEXA_FILE).toString().split('\n');
     console.log(' - Done.');
-
-    var reader = new LineReader(__dirname + '/' + ALEXA_FILE);
 
     var total = 0;
     var successful = 0;
