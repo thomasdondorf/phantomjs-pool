@@ -3,7 +3,7 @@ var Pool = require('../../lib/phantomjs-pool').Pool;
 
 function jobCallback(job, worker, index) {
 
-    if (index < 5) { // we just use the index as our data
+    if (index <= 10) { // we just use the index as our data
         job(index, function(err) {
             console.log('DONE: ' + index);
         });
@@ -13,7 +13,7 @@ function jobCallback(job, worker, index) {
 }
 
 var pool = new Pool({
-    numWorkers : 3,
+    numWorkers : 4,
     jobCallback : jobCallback,
     workerFile : __dirname + '/worker.js' // location of our worker file (as an absolute path)
 });
