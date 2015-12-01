@@ -51,7 +51,19 @@ Check out the examples directory. Here is the minimal example, which saves scree
 
 ## How does it work?
 
-More information coming soon.
+The master file (master.js in the example) is executed via Node.js and spawns multiple PhantomJS processes.
+The PhantomJS process creates a server to communicate with the master process.
+That way the data from the master is submitted to the worker.
+The worker file (worker.js in the example) is embedded into the PhantomJS environment and given the data of the master process.
+After executing the job, the worker can call the done function to signal that another job can be executed.
+
+Some of the features of the library:
+ * Interoperability between Node.js (master) and PhantomJS (worker)
+ * Distribution of jobs between workers
+ * Simple error reporting, error handling and logging
+ * Restart of workers if necessary (due to [memory leaks](https://github.com/ariya/phantomjs/issues/11390))
+ * Recreation of workers if crashed (due to [segmentation fault](https://github.com/ariya/phantomjs/issues/13175))
+ * Restarts workers which are stuck (not calling the done function)
 
 ## License
 
