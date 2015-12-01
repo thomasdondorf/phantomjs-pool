@@ -1,1 +1,0 @@
-Put the PhantomJS executable (phantomjs.exe or phantomjs) in this directory for the examples to work.
