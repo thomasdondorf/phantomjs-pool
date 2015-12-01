@@ -1,6 +1,6 @@
 {
   "name": "phantomjs-pool",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Manage a Pool of PhantomJS instances and distribute jobs among the workers",
   "main": "lib/phantomjs-pool.js",
   "repository": {
