@@ -10,7 +10,7 @@ Download or build the binary for PhantomJS and put the file into the `bin` direc
 
 ## Usage
 
-Check out the examples directory. Here is the minimal example, which saves screenshots of the Google search for the numbers from 0 to 10 with four workers.
+Check out the examples directory. Here is the minimal example, which saves screenshots of the Google search for the numbers from 0 to 9 with four workers.
 
 #### master.js
 
@@ -18,7 +18,7 @@ Check out the examples directory. Here is the minimal example, which saves scree
     
     function jobCallback(job, worker, index) {
     
-        if (index <= 10) { // we just use the index as our data
+        if (index < 10) { // we just use the index as our data
             job(index, function(err) {
                 console.log('DONE: ' + index);
             });
