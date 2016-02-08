@@ -1,6 +1,4 @@
 node_modules
 .idea
-bin/*
-!bin/PUT_PHANTOM_BINARY_HERE.txt
 examples/crawl-alexa-1m/results
 examples/crawl-alexa-1m/top-1m.csv

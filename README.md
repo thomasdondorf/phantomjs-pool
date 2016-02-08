@@ -6,7 +6,8 @@ Create a pool of PhantomJS workers.
 
 `npm install phantomjs-pool`
 
-Download or build the binary for PhantomJS and put the file into the `bin` directory.
+Additionally, get the PhantomJS binaries (via `npm install phantomjs` or `npm install phantomjs2`)
+or download the binary file yourself.
 
 ## Usage
 
